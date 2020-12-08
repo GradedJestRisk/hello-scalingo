@@ -1,0 +1,23 @@
+{
+  "name": "hello-scalingo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GradedJestRisk/hello-scalingo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GradedJestRisk/hello-scalingo/issues"
+  },
+  "homepage": "https://github.com/GradedJestRisk/hello-scalingo#readme",
+  "dependencies": {
+    "@hapi/hapi": "^20.0.3"
+  }
+}
