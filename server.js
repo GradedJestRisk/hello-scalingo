@@ -1,7 +1,11 @@
 'use strict';
 const axios = require('axios');
-
 const Hapi = require('@hapi/hapi');
+const packageJSON = require('./package.json');
+
+const applicationName = process.env.APP || 'NO_APPLICATION';
+const applicationVersion =  packageJSON.version || 'NO_VERSION';
+const containerVersion = process.env.CONTAINER_VERSION || 'NO_CONTAINER_VERSION';
 
 const init = async () => {
 
@@ -15,7 +19,7 @@ const init = async () => {
         method: 'GET',
         path: '/',
         handler: (request, h) => {
-            return 'Hello World!';
+            return `Hello World! from ${applicationName} version ${applicationVersion} running in container from SHA ${containerVersion} `;
         }
     });
 
