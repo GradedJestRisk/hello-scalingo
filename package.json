@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
+    "database:migrate": "knex --knexfile database/client-configuration.js migrate:latest",
     "test": "curl localhost:3000"
   },
   "repository": {

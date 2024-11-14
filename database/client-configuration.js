@@ -1,5 +1,3 @@
-import knex from 'knex';
-
 const host = process.env.DB_HOST;
 const port = process.env.DB_PORT;
 const database = process.env.DB_NAME;
@@ -11,14 +9,18 @@ const localConnectionString = `postgres://${user}:${password}@${host}:${port}/${
 
 const connectionString = scalingoConnectionString ? scalingoConnectionString : localConnectionString;
 
-const client = knex({
+const clientConfiguration = {
     client: 'postgresql',
     connection: {
         connectionString,
         pool: { min: 1, max: 1 },
+    },
+    migrations: {
+        tableName: 'knex_migrations',
+        directory: './migrations',
     }
-});
+};
 
 
-export { client };
+export default clientConfiguration ;
 

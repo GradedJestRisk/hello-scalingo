@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Hapi from '@hapi/hapi';
-import { client } from './database/client.js'
+import clientConfiguration from './database/client-configuration.js';
+import knex from 'knex';
 import { status } from './database/status.js'
 import packageJSON from './package.json' with { type: 'json' };
 
@@ -20,6 +21,7 @@ const init = async () => {
         method: 'GET',
         path: '/',
         handler: async (request, h) => {
+            const client = knex(clientConfiguration);
             const databaseStatus = await status(client);
             const message = `Hello World! from ${applicationName} version ${applicationVersion} running in container from SHA ${containerVersion} - ${databaseStatus}`;
             return message;
