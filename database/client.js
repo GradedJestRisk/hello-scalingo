@@ -1,20 +1,20 @@
+import knex from 'knex';
+
 const host = process.env.DB_HOST;
 const port = process.env.DB_PORT;
 const database = process.env.DB_NAME;
 const user = process.env.DB_USER;
 const password = process.env.DB_PASSWORD;
 
-import knex from 'knex';
+const scalingoConnectionString = process.env.SCALINGO_POSTGRESQL_URL;
+const localConnectionString = `postgres://${user}:${password}@${host}:${port}/${database}`;
+
+const connectionString = scalingoConnectionString ? scalingoConnectionString : localConnectionString;
 
 const client = knex({
     client: 'postgresql',
     connection: {
-        host,
-        port,
-        user,
-        password,
-        database,
-        debug: true,
+        connectionString,
         pool: { min: 1, max: 1 },
     },
 });
