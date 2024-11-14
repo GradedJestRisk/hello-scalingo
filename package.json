@@ -1,6 +1,7 @@
 {
   "name": "hello-scalingo",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node server.js",
     "test": "curl -vvvv localhost:3000"
@@ -12,6 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "@hapi/hapi": "^21.3.12",
-    "axios": "^1.7.7"
+    "axios": "^1.7.7",
+    "knex": "^3.1.0",
+    "pg": "^8.13.1"
   }
 }
