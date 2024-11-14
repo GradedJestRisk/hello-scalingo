@@ -1,7 +1,7 @@
-'use strict';
-const axios = require('axios');
-const Hapi = require('@hapi/hapi');
-const packageJSON = require('./package.json');
+import axios from 'axios';
+import Hapi from '@hapi/hapi';
+import { status } from './database/client.js'
+import packageJSON from './package.json' with { type: 'json' };
 
 const applicationName = process.env.APP || 'NO_APPLICATION';
 const applicationVersion =  packageJSON.version || 'NO_VERSION';
@@ -18,8 +18,10 @@ const init = async () => {
     server.route({
         method: 'GET',
         path: '/',
-        handler: (request, h) => {
-            return `Hello World! from ${applicationName} version ${applicationVersion} running in container from SHA ${containerVersion} `;
+        handler: async (request, h) => {
+            const databaseStatus = await status();
+            const message = `Hello World! from ${applicationName} version ${applicationVersion} running in container from SHA ${containerVersion} - ${databaseStatus}`;
+            return message;
         }
     });
 

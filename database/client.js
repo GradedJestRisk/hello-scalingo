@@ -19,8 +19,13 @@ const client = knex({
     },
 });
 
-const result = await client.raw("SELECT NOW()");
+const status = async ()=>{
+    const result = await client.raw("SELECT NOW()");
+    if (result.rows[0].now){
+        return "Database is up"
+    } else {
+        return "Database is down"
+    }
+}
 
-console.log("Database can be reached - Time is : " + result.rows[0].now );
-
-await client.destroy();
+export { status };
