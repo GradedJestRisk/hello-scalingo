@@ -16,16 +16,9 @@ const client = knex({
     connection: {
         connectionString,
         pool: { min: 1, max: 1 },
-    },
+    }
 });
 
-const status = async ()=>{
-    const result = await client.raw("SELECT NOW()");
-    if (result.rows[0].now){
-        return "Database is up"
-    } else {
-        return "Database is down"
-    }
-}
 
-export { status };
+export { client };
+

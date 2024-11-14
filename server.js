@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Hapi from '@hapi/hapi';
-import { status } from './database/client.js'
+import { client } from './database/client.js'
+import { status } from './database/status.js'
 import packageJSON from './package.json' with { type: 'json' };
 
 const applicationName = process.env.APP || 'NO_APPLICATION';
@@ -19,7 +20,7 @@ const init = async () => {
         method: 'GET',
         path: '/',
         handler: async (request, h) => {
-            const databaseStatus = await status();
+            const databaseStatus = await status(client);
             const message = `Hello World! from ${applicationName} version ${applicationVersion} running in container from SHA ${containerVersion} - ${databaseStatus}`;
             return message;
         }
