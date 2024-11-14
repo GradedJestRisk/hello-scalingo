@@ -14,7 +14,8 @@ const client = knex({
         user,
         password,
         database,
-        debug: true
+        debug: true,
+        pool: { min: 1, max: 1 },
     },
 });
 
