@@ -1,4 +1,3 @@
-set dotenv-load
 
 database-start:
   docker compose --file ./database/docker-compose.yml up --remove-orphans --force-recreate --renew-anon-volumes --detach
