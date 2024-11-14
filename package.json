@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node server.js",
     "database:migrate": "knex --knexfile database/client-configuration.js migrate:latest",
+    "postdeploy": "DEBUG=knex:* npm run db:migrate",
     "test": "curl localhost:3000"
   },
   "repository": {
