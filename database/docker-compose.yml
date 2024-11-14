@@ -1,0 +1,10 @@
+services:
+  postgresql:
+    image: docker.io/bitnami/postgresql:17
+    ports:
+      - ${DB_PORT}:5432
+#    https://github.com/bitnami/containers/blob/main/bitnami/postgresql/README.md#customizable-environment-variables
+    environment:
+      - POSTGRESQL_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./postgresql-configuration:/bitnami/postgresql/conf
